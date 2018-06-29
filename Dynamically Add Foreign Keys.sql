@@ -21,7 +21,7 @@ WHILE (SELECT COUNT(*) FROM #Tables) > 0
 		SET @SQL = 
 			'ALTER TABLE [' + @Schema + '].[' + @Table + ']
 				ADD CONSTRAINT FK_JobID_' + @Schema + '_'+ @Table +' FOREIGN KEY ([' + @Column + '])
-					REFERENCES dbo.['+ @SourceTable +'] ([JobRunId]) 
+					REFERENCES dbo.['+ @SourceTable +'] ([' + @Column + ']) 
 						ON UPDATE CASCADE'
 		EXEC sp_executesql @SQL
 		DELETE FROM #Tables WHERE TABLE_NAME = @Table AND TABLE_SCHEMA = @Schema
